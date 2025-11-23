@@ -3,65 +3,67 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_NETLIFY_ID/deploy-status)](https://app.netlify.com/sites/YOUR_SITE_NAME/deploys)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Game Maps Inside Earth** adalah aplikasi web interaktif *Single Page Application* (SPA) yang dirancang untuk membantu pengguna memvisualisasikan dan membandingkan **skala ukuran sebenarnya dari peta dunia video game populer** (seperti GTA V, PUBG, Elden Ring, dll.) ketika diletakkan di atas peta dunia nyata (menggunakan OpenStreetMap).
+**Game Maps Inside Earth** is an interactive Single Page Application (SPA) designed to help users **visualize and compare the true scale and size of popular video game maps** (such as GTA V, PUBG, Elden Ring, etc.) when overlaid onto a real-world map (using OpenStreetMap).
 
-Proyek ini dibangun dengan fokus pada performa, akurasi, dan estetika desain modern **Glassmorphism**.
-
----
-
-## ✨ Fitur Utama (Key Features)
-
-* **Perbandingan Skala Akurat:** Menggunakan Leaflet.js dan prinsip Geodesi untuk menskalakan data GeoJSON peta game secara akurat sesuai dengan dimensi dunia nyata.
-* **Penempatan Peta Dinamis:** Peta game dapat ditambahkan, dihapus, dan **dipindahkan** (*drag and drop*) ke mana saja di peta dasar, memungkinkan perbandingan yang unik dan visualisasi yang realistis (misalnya, menempatkan Los Santos di perairan New York).
-* **Sidebar Interaktif:** Sidebar responsif dengan desain *Glassmorphism* yang elegan, dilengkapi dengan fitur **pencarian** (*search filtering*) untuk akses cepat ke game.
-* **Desain Modern:** Implementasi UI/UX minimalis, bersih, dan kontemporer.
-* **Ramah Seluler (Mobile-Friendly):** Dioptimalkan untuk tampilan desktop dan seluler dengan *toggleable sidebar*.
+This project is built with a focus on performance, accuracy, and a modern **Glassmorphism** design aesthetic.
 
 ---
 
-## 🛠️ Tumpukan Teknologi (Tech Stack)
+## ✨ Key Features
 
-Proyek ini bersifat *client-side only* (statis) dan dibangun di atas:
+* **Accurate Scale Visualization:** Uses Leaflet.js and Geodesy principles to accurately scale game map GeoJSON data based on real-world dimensions.
+* **Dynamic Map Placement:** Game maps can be added, removed, and freely **dragged and dropped** anywhere on the globe, enabling compelling comparisons (e.g., placing the Los Santos map over the New York City metropolitan area).
+* **Interactive Sidebar:** A responsive sidebar featuring a modern **Glassmorphism** design, complete with **search filtering** for quick access to game data.
+* **Modern UI/UX:** Implements a clean, contemporary design using CSS features like `backdrop-filter` for the transparent, blurred glass effect.
+* **Mobile-Friendly:** Optimized for both desktop and mobile viewing with a toggleable sidebar control.
 
-| Kategori | Teknologi | Deskripsi |
+---
+
+## 🛠️ Tech Stack
+
+This is a client-side only (static) web application, relying on the following core technologies:
+
+| Category | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Pemetaan Inti** | **Leaflet.js** | Library JavaScript terkemuka untuk peta interaktif yang ringan. |
-| **Logika** | **Vanilla JavaScript (ES6)** | Mengelola semua logika aplikasi, interaksi pengguna, dan *state* peta tanpa *framework* berat. |
-| **Desain** | **HTML5 / CSS3** | Struktur dan styling, termasuk implementasi `backdrop-filter` untuk efek Glassmorphism. |
-| **Peta Dasar** | **OpenStreetMap / CARTO** | Menyediakan *tile layers* (lapisan peta) dunia nyata. |
+| **Core Mapping** | **Leaflet.js** | The leading JavaScript library for lightweight, interactive maps. |
+| **Logic** | **Vanilla JavaScript (ES6)** | Manages all application logic, user interaction, and map state without reliance on large frameworks. |
+| **Design** | **HTML5 / CSS3** | Structure and styling, including the implementation of CSS variables and modern layout techniques. |
+| **Base Map Tiles** | **OpenStreetMap / CARTO** | Provides the real-world map layers. |
 
 ---
 
-## 🚀 Instalasi dan Panduan Lokal
+## 🚀 Installation and Local Setup
 
-Proyek ini adalah aplikasi web statis yang sangat mudah dijalankan.
+This project is a static web application and requires minimal setup to run locally.
 
-### Prasyarat
+### Prerequisites
 
-Hanya membutuhkan peramban web modern (Chrome, Firefox, Edge, dll.).
+You only need a modern web browser.
 
-### Langkah-langkah
+### Steps
 
-1.  **Clone Repositori:**
+1.  **Clone the Repository:**
     ```bash
     git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
     cd YOUR_REPO_NAME
     ```
 
-2.  **Jalankan Secara Lokal:**
-    Cukup buka file `index.html` langsung di *browser* Anda. Untuk pengalaman pengembangan yang lebih baik, gunakan ekstensi *live server* (seperti Live Server di VS Code).
+2.  **Run Locally:**
+    Simply open the `index.html` file directly in your web browser. For a better development experience, it is recommended to use a local web server (such as the **Live Server** extension in VS Code).
 
 ---
 
 ## 🌐 Deployment
 
-Proyek ini ideal untuk *deployment* di platform hosting statis seperti Netlify atau GitHub Pages.
+This project is perfectly suited for deployment on static hosting platforms.
 
-## 🤝 Kontribusi
+* **Netlify:** Connect the GitHub repository; Netlify will handle the build and deploy automatically.
+* **GitHub Pages:** Deploy directly from the `main` or `gh-pages` branch.
 
-Kontribusi sangat disambut! Jika Anda memiliki saran untuk penambahan peta game baru, perbaikan *bug*, atau peningkatan desain visual, silakan buka *issue* atau kirimkan *pull request*.
+## 🤝 Contribution
 
-## 📜 Lisensi
+Contributions are welcome! If you have suggestions for new game maps to include, bug fixes, or design improvements, please feel free to open an issue or submit a pull request.
 
-Proyek ini dilisensikan di bawah **MIT License**.
+## 📜 License
 
+This project is licensed under the **MIT License**.
