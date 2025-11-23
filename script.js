@@ -408,8 +408,7 @@ gamesData.forEach(game => {
     listContainer.appendChild(el);
 });
 
-// --- NEW LOGIC FOR INFO MODAL (ABOUT & PRIVACY) ---
-
+// --- 3. MODAL LOGIC ---
 const modalContentData = {
     about: {
         title: "About the App",
@@ -447,32 +446,21 @@ window.openInfoModal = (type) => {
 }
 
 window.closeInfoModal = (e) => {
-    // Close if the clicked element is the overlay (dark area) or the close button
     if (e.target.id === 'infoModalOverlay' || e.target.classList.contains('modal-close-btn')) {
         document.getElementById('infoModalOverlay').classList.remove('active');
     }
 }
 function initDefaultState() {
-    // 1. Ambil data game GTA V dari array gamesData
     const gtaData = gamesData.find(g => g.id === 'gta_v');
     
     if (gtaData) {
-        // 2. Spawn Map GTA V
-        // Karena view peta saat ini sedang di laut (lihat langkah 1), 
-        // maka GTA V akan muncul tepat di tengah laut tersebut.
         spawnGameMap(gtaData);
-
-        // 3. Geser Kamera ke Kota New York
-        // Setelah map muncul, kita geser pandangan (pan) ke atas dan kiri 
-        // supaya terlihat New York City di kiri atas dan GTA V di kanan bawah.
         setTimeout(() => {
-            map.flyTo([40.65, -73.95], 10, { // Meningkatkan latitude dari 40.55 ke 40.65
+            map.flyTo([40.65, -73.95], 10, { 
                 animate: true,
                 duration: 1.5
             });
-        }, 500); // Beri jeda sedikit agar map ter-render dulu
+        }, 500); 
     }
 }
-
-// Jalankan fungsi inisialisasi
 initDefaultState();
