@@ -415,7 +415,7 @@ const modalContentData = {
         title: "Tentang Aplikasi",
         body: `
             <p><strong>True Size Of Game Maps</strong> adalah alat visualisasi interaktif yang memungkinkan kamu membandingkan ukuran peta video game secara nyata (True Size) di atas peta dunia.</p>
-            <S
+            
             <p>Aplikasi ini dibuat untuk tujuan edukasi dan hiburan, memberikan perspektif baru tentang seberapa luas dunia virtual favoritmu dibandingkan dengan lokasi di dunia nyata.</p>
 
             <p>Dikembangkan oleh <strong>Nur Yahya Akhmad</strong> menggunakan teknologi <strong>LeafletJS</strong> dan <strong>OpenStreetMap</strong>. 
