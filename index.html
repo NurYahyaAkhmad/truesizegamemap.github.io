@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Map True Size Comparison</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-map-marked-alt"></i> True Size Of Game Maps</h1>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Cari nama game..." onkeyup="filterGames()">
+                </div>
+            </div>
+            
+            <div class="game-list" id="gameList"></div>
+            
+            <div class="sidebar-footer">
+                <button class="btn-reset" onclick="resetAllMaps()">
+                    <i class="fas fa-trash-alt"></i> Hapus Semua Peta
+                </button>
+                
+                <div class="footer-links">
+                    <button class="btn-footer-link" onclick="openInfoModal('about')">About</button>
+                    <span class="divider">|</span>
+                    <button class="btn-footer-link" onclick="openInfoModal('privacy')">Privacy Policy</button>
+                </div>
+            </div>
+            
+            <div class="app-copyright">
+                &copy; 2025 <strong>Nur Yahya Akhmad</strong>.<br>
+                All Rights Reserved.<br><span style="opacity: 0.7; font-size: 0.65rem;">Powered by LeafletJS</span>
+            </div>
+        </div>
+        
+        <button id="sidebar-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-chevron-left" id="toggleIcon"></i></button>
+        <div id="map"></div>
+    </div>
+
+    <div id="infoModalOverlay" class="modal-overlay" onclick="closeInfoModal(event)">
+        <div class="modal-box">
+            <button class="modal-close-btn" onclick="closeInfoModal(event)">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Judul</h2>
+            </div>
+            <div class="modal-body" id="modalContent">
+                </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
