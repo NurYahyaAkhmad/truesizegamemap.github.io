@@ -1,5 +1,5 @@
-// --- 1. FUNGSI HELPER & DATA ---
-// Ubah fungsi ini di bagian paling atas script.js
+// --- 1. HELPER FUNCTIONS & DATA ---
+// Update this function at the top of script.js
 function processGeoJsonShape(coords, scale = 1.0) {
     let minLat = Infinity, maxLat = -Infinity, minLng = Infinity, maxLng = -Infinity;
     coords.forEach(p => {
@@ -11,7 +11,7 @@ function processGeoJsonShape(coords, scale = 1.0) {
     
     return coords.map(p => {
         const dLng = p[0] - centerLng, dLat = p[1] - centerLat;
-        // Di sini kita kalikan dengan scale (1.2 untuk +20%)
+        // Here we multiply by scale (1.2 for +20%)
         return [
             dLng * (Math.PI / 180) * R * Math.cos(latRad) * scale, 
             dLat * (Math.PI / 180) * R * scale
@@ -252,8 +252,8 @@ const gamesData = [
         name: 'Ghost of Tsushima', 
         description: 'Tsushima Island', 
         size: '~29 km²', 
-        color: '#423b36ff', // Merah Samurai
-        image: 'got.jpg', // Pastikan Anda punya file gambar ini
+        color: '#423b36ff', // Samurai red
+        image: 'got.jpg', // Make sure you have this image file
         shape: processGeoJsonShape(rawTsushimaGeoJson, 0.9) 
     },
     { 
@@ -261,8 +261,8 @@ const gamesData = [
         name: 'PUBG ', 
         description: 'Erangel', 
         size: '~64 km²', 
-        color: '#0e6692ff', // Warna Emas/Orange khas PUBG
-        image: 'erangel.jpg', // Pastikan Anda punya file gambar ini
+        color: '#0e6692ff', // PUBG gold/orange
+        image: 'erangel.jpg', // Make sure you have this image file
         shape: processGeoJsonShape(rawPubgGeoJson, 1.0) 
     },
     {
@@ -270,8 +270,8 @@ const gamesData = [
         name: 'Far Cry 3',
         size: '~30 km²',
         description: 'Rook Islands',
-        image: 'farcry3.jpg', // Pastikan gambar tersedia di folder images
-        color: '#2f5826ff', // Kuning/Emas
+        image: 'farcry3.jpg', // Make sure image exists in images folder
+        color: '#2f5826ff', // Yellow/Gold
         shape: processGeoJsonShape(rawFarcry3GeoJson, 1.0)
     },
     {
@@ -279,8 +279,8 @@ const gamesData = [
         name: 'Far Cry 6',
         size: '~88 km²',
         description: 'Yara',
-        image: 'farcry6.jpg', // Pastikan gambar farcry6.webp tersedia
-        color: '#94840bff', // Merah/Crimson (Warna khas tema revolusi)
+        image: 'farcry6.jpg', // Make sure farcry6.webp is available
+        color: '#94840bff', // Revolution theme color
         shape: processGeoJsonShape(rawFarcry6GeoJson, 1.0)
     },
     {   id: 'elden_ring', name: 'Elden Ring', 
@@ -293,16 +293,16 @@ const gamesData = [
         id: 'the_forest', 
         name: 'The Forest', 
         description: 'The Peninsula', 
-        size: '~10 km²', // Perkiraan luas area playable
-        color: '#1e8023ff', // Warna Forest Green
-        image: 'theforest.jpg', // Pastikan Anda punya gambar ini
+        size: '~10 km²', // Estimated playable area
+        color: '#1e8023ff', // Forest green
+        image: 'theforest.jpg', // Make sure you have this image
         shape: processGeoJsonShape(rawTheForestGeoJson, 1.0) 
     },
     
 ];
 
 
-// --- 2. SETUP PETA & LOGIC ---
+// --- 2. MAP SETUP & LOGIC ---
 const map = L.map('map', { zoomControl: false }).setView([-2.5489, 118.0149], 5);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
@@ -342,7 +342,7 @@ function spawnGameMap(game) {
     const polygon = L.polygon(getCoordsFromMeters(polyCenter, game.shape), { color: game.color, fillColor: game.color, fillOpacity: 0.5, weight: 2 }).addTo(map);
     const uId = Date.now();
     
-    polygon.bindPopup(`<div class="popup-content"><span class="popup-title">${game.name}</span>Size: ${game.size}<br><button class="btn-remove-single" onclick="removeSingleLayer(${uId}, '${game.id}')">Hapus</button></div>`);
+    polygon.bindPopup(`<div class="popup-content"><span class="popup-title">${game.name}</span><br>Size: ${game.size}<br><button class="btn-remove-single" onclick="removeSingleLayer(${uId}, '${game.id}')">Remove</button></div>`);
 
     dragHandle.on('drag', (e) => {
         const newCenter = getLatLngFromMeters(e.latlng, -maxX, -minY);
@@ -408,28 +408,28 @@ gamesData.forEach(game => {
     listContainer.appendChild(el);
 });
 
-// --- LOGIKA BARU UNTUK MODAL INFO (ABOUT & PRIVACY) ---
+// --- NEW LOGIC FOR INFO MODAL (ABOUT & PRIVACY) ---
 
 const modalContentData = {
     about: {
-        title: "Tentang Aplikasi",
+        title: "About the App",
         body: `
-            <p><strong>True Size Of Game Maps</strong> adalah alat visualisasi interaktif yang memungkinkan kamu membandingkan ukuran peta video game secara nyata (True Size) di atas peta dunia.</p>
+            <p><strong>True Size Of Game Maps</strong> is an interactive visualization tool that lets you compare the real-world size (true size) of video game maps on a world map.</p>
             
-            <p>Aplikasi ini dibuat untuk tujuan edukasi dan hiburan, memberikan perspektif baru tentang seberapa luas dunia virtual favoritmu dibandingkan dengan lokasi di dunia nyata.</p>
+            <p>This app was created for educational and entertainment purposes, offering a new perspective on how large your favorite virtual worlds are compared to real-world locations.</p>
 
-            <p>Dikembangkan oleh <strong>Nur Yahya Akhmad</strong> menggunakan teknologi <strong>LeafletJS</strong> dan <strong>OpenStreetMap</strong>. 
-            Terinspirasi dari <a href="https://thetruesize.com/" target="_blank" rel="noopener">The True Size Of...</a> Yahya membawakan nuansa website ini dengan tema peta game.</p>
+            <p>Developed by <strong>Nur Yahya Akhmad</strong> using <strong>LeafletJS</strong> and <strong>OpenStreetMap</strong>. 
+            Inspired by <a href="https://thetruesize.com/" target="_blank" rel="noopener">The True Size Of...</a>, Yahya brings a game-map themed experience.</p>
         `
     },
     privacy: {
         title: "Privacy Policy",
         body: `
-            <p><strong>Kebijakan Privasi:</strong></p>
-            <p>1. Aplikasi ini berjalan sepenuhnya di sisi klien (browser Anda).</p>
-            <p>2. Kami <strong>tidak mengumpulkan</strong>, menyimpan, atau membagikan data lokasi pribadi Anda.</p>
-            <p>3. Aplikasi ini tidak menggunakan cookie pelacakan untuk tujuan iklan.</p>
-            <p>4. Semua interaksi peta bersifat lokal sementara dan akan hilang saat Anda menutup halaman ini.</p>
+            <p><strong>Privacy Policy:</strong></p>
+            <p>1. This application runs entirely on the client side (your browser).</p>
+            <p>2. We <strong>do not collect</strong>, store, or share your personal location data.</p>
+            <p>3. This app does not use tracking cookies for advertising purposes.</p>
+            <p>4. All map interactions are local and temporary and will be cleared when you close this page.</p>
         `
     }
 };
@@ -447,7 +447,7 @@ window.openInfoModal = (type) => {
 }
 
 window.closeInfoModal = (e) => {
-    // Tutup jika yang diklik adalah overlay (area gelap) atau tombol close
+    // Close if the clicked element is the overlay (dark area) or the close button
     if (e.target.id === 'infoModalOverlay' || e.target.classList.contains('modal-close-btn')) {
         document.getElementById('infoModalOverlay').classList.remove('active');
     }
