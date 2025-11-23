@@ -1,5 +1,3 @@
-﻿# truesizegamemap.github.io
-
 # 🗺️ Game Maps Inside Earth
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_NETLIFY_ID/deploy-status)](https://app.netlify.com/sites/YOUR_SITE_NAME/deploys)
@@ -66,3 +64,4 @@ Kontribusi sangat disambut! Jika Anda memiliki saran untuk penambahan peta game 
 ## 📜 Lisensi
 
 Proyek ini dilisensikan di bawah **MIT License**.
+
