@@ -20,9 +20,8 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-s
 
 #sidebar {
     position: absolute;
-    top: 20px; 
-    left: 20px; 
-    bottom: 20px;
+    top: 25px; 
+    left: 25px; 
     width: var(--sidebar-width);
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
@@ -35,6 +34,8 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-s
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: hidden;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
 }
 
 #sidebar.collapsed { 
@@ -109,9 +110,13 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-s
 .game-list { 
     flex: 1; 
     overflow-y: auto; 
-    padding: 15px; 
+    max-height: 300px;
+    padding: 10px 15px; 
+    padding-right: 5px;
     background-color: rgb(255, 255, 255);
     background-blend-mode: overlay;
+    scrollbar-width: thin; /* Membuat scrollbar lebih tipis */
+    scrollbar-color: rgba(59, 130, 246, 0.3) transparent; /* Warna thumb dan track */
 }
 
 .game-card {
@@ -196,20 +201,47 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-s
     background: white; 
 }
 
+/* style.css */
+
 .btn-reset {
-    width: 100%; padding: 12px; 
-    background-color: #e0f2fe; 
-    color: #4063c4c7;
-    border: none; border-radius: 8px; 
-    font-weight: 700; font-size: 0.95rem; 
-    cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    margin-bottom: 15px; /* Jarak antara tombol hapus dan link footer */
+    /* 1. PERBAIKAN FONT */
+    font-family: 'Poppins', sans-serif; /* Memaksa tombol menggunakan font Poppins */
+    font-weight: 600; /* Ketebalan font yang pas (tidak terlalu tebal) */
+    font-size: 0.9rem;
+
+    /* 2. PERBAIKAN WARNA (Lebih Tipis & Elegan) */
+    background: transparent; 
+    border: 1px solid #bfc9d35b; /* Tipiskan jadi 1px agar tidak "terlalu biru" */
+    color: #1a222cc5;
+    
+    /* 3. PERBAIKAN JARAK BAWAH */
+    margin-bottom: 20px; /* Memberi jarak cukup ke tulisan About | Privacy */
+
+    /* Layout & Ukuran */
+    width: 100%;
+    padding: 10px 0; /* Padding atas bawah */
+    border-radius: 50px; /* Dibuat membulat penuh seperti search bar agar konsisten */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    /* Agar ikon dan teks rapi di tengah */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; 
 }
 
-.btn-reset:hover { 
-    background-color: #bae6fd;
-    box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+/* Efek Hover (Saat mouse di atas tombol) */
+.btn-reset:hover {
+    background-color: rgba(216, 231, 255, 0.08); /* Biru sangat transparan */
+    transform: translateY(-1px); /* Efek naik sedikit */
+    box-shadow: 0 4px 10px rgba(186, 213, 255, 0.15); /* Bayangan halus */
+}
+
+/* Memastikan ikon (tempat sampah) warnanya sama */
+.btn-reset i {
+    font-size: 0.9rem;
+    color: inherit; /* Mengikuti warna teks tombol */
 }
 
 /* STYLE BARU UNTUK FOOTER LINK (ABOUT & PRIVACY) */
@@ -253,7 +285,7 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-s
 
 #sidebar-toggle-btn {
     position: absolute; 
-    top: 390px; 
+    top: 320px; 
     left: calc(var(--sidebar-width) + 20px - 20px + 40px); 
     z-index: 1001;
     background: white; 

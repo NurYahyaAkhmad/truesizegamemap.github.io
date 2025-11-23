@@ -298,14 +298,14 @@ const gamesData = [
         image: 'theforest.jpg', // Make sure you have this image
         shape: processGeoJsonShape(rawTheForestGeoJson, 1.0) 
     },
-    
 ];
 
 
 // --- 2. MAP SETUP & LOGIC ---
-const map = L.map('map', { zoomControl: false }).setView([-2.5489, 118.0149], 5);
-L.control.zoom({ position: 'bottomright' }).addTo(map);
+const map = L.map('map', { zoomControl: false }).setView([40.45, -73.8],11); // Meningkatkan latitude dari 40.28 ke 40.38
 
+// ... baris L.control.zoom dan L.tileLayer biarkan saja (tidak perlu diubah) ...
+L.control.zoom({ position: 'bottomright' }).addTo(map);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19
 }).addTo(map);
@@ -452,3 +452,27 @@ window.closeInfoModal = (e) => {
         document.getElementById('infoModalOverlay').classList.remove('active');
     }
 }
+function initDefaultState() {
+    // 1. Ambil data game GTA V dari array gamesData
+    const gtaData = gamesData.find(g => g.id === 'gta_v');
+    
+    if (gtaData) {
+        // 2. Spawn Map GTA V
+        // Karena view peta saat ini sedang di laut (lihat langkah 1), 
+        // maka GTA V akan muncul tepat di tengah laut tersebut.
+        spawnGameMap(gtaData);
+
+        // 3. Geser Kamera ke Kota New York
+        // Setelah map muncul, kita geser pandangan (pan) ke atas dan kiri 
+        // supaya terlihat New York City di kiri atas dan GTA V di kanan bawah.
+        setTimeout(() => {
+            map.flyTo([40.65, -73.95], 10, { // Meningkatkan latitude dari 40.55 ke 40.65
+                animate: true,
+                duration: 1.5
+            });
+        }, 500); // Beri jeda sedikit agar map ter-render dulu
+    }
+}
+
+// Jalankan fungsi inisialisasi
+initDefaultState();
